@@ -158,10 +158,10 @@ const questionTitles = {
 }
 
 let qNum = 0
-// if (localStorage.getItem("questionNum") != null){
-//     qNum = localStorage.getItem("questionNum")
-//     alert("Automatically Returned to Question Number " + (qNum+1) )
-// }
+if (localStorage.getItem("questionNum") != null){
+    qNum = localStorage.getItem("questionNum")
+    alert("Automatically Returned to Question Number " + (qNum+1) )
+}
 
 let selectedAnswer = null
 
