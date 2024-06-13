@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Nunito';
+}
+
+.dross {
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    margin-left: 25vw;
+    margin-top: 5vh;
+}
+
+.drossimg {
+    width: 6rem;
+}
+
+#options {
+    max-width: 50vw;
+    margin: auto;
+    margin-top: 5vh;
+}
+
+#translate-directions {
+    margin-top: 10vh;
+    margin-left: 25vw;
+    font-weight: 800;
+}
+
+#question-text {
+    width: max-content;
+    margin-left: 2vw;
+    max-height: 3REM;
+
+}
+
+.popup {
+    background-color: rgb(193, 186, 198);
+    border-radius: 5px;
+    position: absolute;
+    width: 80px;
+    top: 150%;
+    left: 50%;
+    margin-left: -40px;
+    text-align: center;
+    z-index: 1;
+    padding: 0.3em 0em;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.regular {
+    font-weight: 500;
+}
+
+:root {
+    --background: #ffffff;
+    --text: #494949;
+    --grayHover: #F7F7F7;
+    --border: #E5E5E5;
+    --selectedInside: #DDF5FF;
+    --selectedText: #0B98D5;
+    --selectedBorder: #85D8FF;
+    --purple: #a02d91;
+    --dpurple: #842577;
+    --purpleDark: #8b277e;
+    --dpurpleDark: #6b1e61;
+    --correctInside: #D7FFB8;
+    --correctBorder: #A4EE6F;
+    --correctText: #57A700;
+}
+
+#question-text {
+    display: inline-block;
+    background-color: var(--background);
+    border: solid 2px var(--border);
+    padding: 0.3em 3em;
+    border-radius: 10px;
+}
+
+/*------------
+    button   
+------------*/
+
+.button {
+    font-family: 'Nunito';
+    border: none;
+    border-radius: 1.2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    height: 3em; 
+    position: relative; /* Make the button a containing block */
+}
+
+.button::after {
+    z-index: -1;
+    border: none;
+    border-radius: 1.2em;
+    width: 100%; /* Match the width of the button */
+    height: 100%; /* Match the height of the button */
+    transform: translateY(5px);
+    content: '';
+    position: absolute; /* Position relative to the button */
+    top: 0;
+    left: 0;
+}
+
+.btn-option {
+    background-color: rgb(243, 243, 243);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.button.outline.selected {
+    background-color: var(--selectedInside); 
+    border: solid 2px var(--selectedBorder); 
+    color: var(--selectedText); 
+}
+
+.button.outline.selected::after {
+    background-color: var(--selectedBorder); 
+    border: solid 2px var(--selectedBorder); 
+}
+
+.button.outline.selected:hover {
+    background-color: var(--selectedInside); 
+    border: solid 2px var(--selectedBorder); 
+    color: var(--selectedText); 
+}
+
+.button.outline.selected:hover::after {
+    background-color: var(--selectedBorder); 
+    border: solid 2px var(--selectedBorder); 
+}
+
+.btn-submit, .btn-next-question {
+    margin-top: 20px;
+    float: right;
+    background-color: rgb(226, 226, 226);
+    color: rgb(130, 130, 130);
+}
+
+.btn-active {
+    color: black;
+}
+
+
+.btn-submit::after, .btn-next-question::after {
+    background-color: rgba(113, 4, 159, 0.247);
+}
+.button:active {
+    transform: translateY(5px);
+}
+
+.button:active::after {
+    transform: translateY(0px); 
+    display: none;
+}
+
+.button.outline {
+    border: solid 2px var(--border);
+}
+
+.button.outline::after {
+    border: solid 2px var(--border);
+    transform: translateY(3px) translateX(-2px);
+}
+
+.button.purple {
+    font-weight: 700;
+    background-color: var(--purple);
+    color:var(--background);
+}
+
+.button.purple::after {
+    background-color: var(--dpurple);
+}
+
+.button.purple:hover {
+    background-color: var(--purpleDark);
+}
+
+.button.purple:hover::after {
+    background-color: var(--dpurpleDark);
+}
+
+.button.gray {
+    background-color: var(--background);
+    color:var(--text);
+}
+
+.button.gray::after {
+    background-color: var(--border);
+}
+
+.button.gray:hover {
+    background-color: var(--grayHover);
+}
+
+.button.gray:hover::after {
+    background-color: var(--border);
+}
+
+
+.button.gray.outline.correct {
+    background-color: var(--correctInside);
+    color: var(--correctText);
+    border: solid 2px var(--correctBorder);
+}
+
+.button.gray.outline.correct::after {
+    background-color: var(--correctBorder);
+    border: solid 2px var(--correctBorder);
+}
+
+.button.gray.outline.correct:hover {
+    background-color: var(--correctInside);
+    color: var(--correctText);
+    border: solid 2px var(--correctBorder);
+}
+
+.button.gray.outline.correct:hover::after {
+    background-color: var(--correctBorder);
+    border: solid 2px var(--correctBorder);
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 20px;
+    background: #1da1f2;
+    box-shadow: 2px 14px 15px -7px rgba(30, 166, 250, 0.36);
+    border-radius: 50px;
+    transition: all 0.5s;
+  }
+
+  .header-area .progress {
+    width: 40%;
+    height: 200px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+    background: #e6e9ff;
+    border-radius: 20px;
+    box-shadow: 0px 10px 50px #abb7e9;
+  }
+
+.word-in-question {
+    position: relative;
+    display: inline;
+    white-space:nowrap;
+}
+
+.content {
+
+}

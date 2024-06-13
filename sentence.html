@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id = "header-area">
+        <div class="progress"></div>
+        <p id = "score-counter"> </p>
+    </div>
+
+    <h2 id = "translate-directions"> Please translate the below from English to Old Norse.</h2>
+    <div class="dross">
+        <img src="dross.svg" class="drossimg" alt="">
+        <p id = "question-text"></p>
+    </div>
+
+    <div id = "options">
+
+    </div>
+
+    <button class = "button btn-submit" onclick = "submitQuestion()"> Submit </button>
+
+    <script src = "mchoice.js"> </script> 
+    <script src = "progressbar.js"> </script> 
+</body>
+</html>
