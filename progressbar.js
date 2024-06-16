@@ -57,4 +57,4 @@ function elt(type, prop, ...childrens) {
     }
   }
   
-let pb = new Progress(1, 0, 16, {parent : ".progress"});
+let pb = new Progress(1, 0, 100, {parent : ".progress"});

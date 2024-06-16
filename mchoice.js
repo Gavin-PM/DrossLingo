@@ -28,7 +28,7 @@ const questions = [
         'type': "sentEtoN",
         'question': "Denmark", 
         'achoices': ["Gormr", "Sá", "Danmörk", "dόttir", "Dansk"], 
-        'answer': 0,
+        'answer': 2,
         'allowHover': true
     },
     {
@@ -104,7 +104,8 @@ const questions = [
         {
             'type': "sentNtoE",
             'question': "Þeirra ævintýri byrjaði í fjarlægum landi, þar sem tröll og vættir bjuggu.", 
-            'achoices': ["Their adventure began in a distant land, where trolls and spirits lived.", 
+            'achoices': ["The expedition brought them to lands unknown, where myths became reality.",
+                        "Their adventure began in a distant land, where trolls and spirits lived.", 
                          "The brave warriors set sail to conquer new lands and seas.", 
                          "A man should not carve runes, unless he well knows how to control them.", 
                          "They traveled to a faraway land to find treasure and glory.", 
@@ -112,10 +113,9 @@ const questions = [
                          "In the distant land, they encountered mystical creatures.",
                          "The journey led them to uncharted territories filled with dangers.",
                          "Their saga started in a remote area, home to giants and fairies.",
-                         "The expedition brought them to lands unknown, where myths became reality.",
                          "Venturing into the unknown, they faced beasts and spirits."
                         ], 
-            'answer': 0,
+            'answer': 1,
             'allowHover': false
         }
     
@@ -124,9 +124,9 @@ const questions = [
 
 const hoverWords = {
     'maðr': 'Man or Person',
-    'kona': 'Woman',
+    'woman': 'Kona',
     'bók': 'Book',
-    'konungr': 'King',
+    'king': 'Konungr',
     'skip': 'Ship',
     'korn': 'Grain',
     'fugl': 'Bird',
@@ -134,14 +134,14 @@ const hoverWords = {
     'barn': 'Child',
     'sonr': 'Son',
     'sá': 'That (One)',
-    'Denmark': 'Dansk',
-    'Konungs': 'King\'s',
-    'dóttir': 'Daughter',
-    'fann': 'Found',
-    'falda': 'Hidden',
-    'sverð': 'Sword',
-    'fornri': 'Ancient',
-    'helli': 'Cave',
+    'denmark': 'Danmörk',
+    'konungs': 'King\'s',
+    'daughter': 'dóttir',
+    'found': 'fann',
+    'hidden': 'falda',
+    'sword': 'sverð',
+    'ancient': 'fornri',
+    'cave': 'helli',
     'æfintýri': 'Adventure',
     'byrjaði': 'Began',
     'fjarlægum': 'Distant',
@@ -160,7 +160,9 @@ const questionTitles = {
 let qNum = 0
 if (localStorage.getItem("questionNum") != null){
     qNum = localStorage.getItem("questionNum")
-    alert("Automatically Returned to Question Number " + (qNum+1) )
+    pb.now = 5 + (95/questions.length) * qNum
+    pb.syncState()
+    alert("Automatically Returned to Question Number " + (Number(qNum)+1) )
 }
 
 let selectedAnswer = null
@@ -204,13 +206,15 @@ function showMultipleChoiceQuestion(idx){
         (e) => {hideHoverPopUp(e.target)}
     )
     $('#translate-directions').text(questionTitles[questionObject.type])
+    $('.word-in-question').on('click', (e) => {
+        showHoverPopUp(e.target)
+    })
 }
 
 function showHoverPopUp(textElement){
-    console.log("hi")
-    translation = hoverWords[$(textElement).text().split('\n')[0]]
-    if ( translation == undefined ) {return}
+    translation = hoverWords[$(textElement).text().split('\n')[0].toLowerCase()]
     if (!questions[qNum].allowHover) {return}
+    if ( translation == undefined ) {return}
     $(textElement).append(`
     <div class = "popup" > ${translation} </div>    
     `)
@@ -226,8 +230,10 @@ function submitQuestion() {
     if (correct) {
         $(getOptionElement(selectedAnswer)).addClass('correct')
         localStorage.setItem('numCorrect', Number(localStorage.getItem('numCorrect')) + 1)
+    } else {
+        $(getOptionElement(selectedAnswer)).addClass('wrong')
     }
-    localStorage.setItem('questionNum', qNum + 1)
+    localStorage.setItem('questionNum', Number(qNum) + 1)
     let buttonObject = $('.btn-submit')
     buttonObject.addClass('btn-next-question purple')
     buttonObject.removeClass('btn-submit')
@@ -236,6 +242,7 @@ function submitQuestion() {
 
     if(qNum == 14) {
         alert(`You finished this Drosslinigo lesson! The number of questions you got right: ${localStorage.getItem('numCorrect')}`)
+        pb.end()
     }
 }
 
@@ -251,11 +258,14 @@ function nextQuestion(){
     buttonObject.text('Submit')
     $('.btn-submit').removeClass('btn-active')
     buttonObject[0].onclick = () => {}
-    pb.now ++
+    pb.now = 5 + (95/questions.length) * qNum
     pb.syncState()
 
     if (qNum == 1){
         alert("Remember, You can hover over the words to see their translations.")
+    }
+    if (qNum == 4){
+        alert("Sometimes, hovering will be disabled for an extra challenge.")
     }
 }
 

@@ -25,7 +25,7 @@
 
 #translate-directions {
     margin-top: 10vh;
-    margin-left: 25vw;
+    text-align: center;
     font-weight: 800;
 }
 
@@ -40,13 +40,13 @@
     background-color: rgb(193, 186, 198);
     border-radius: 5px;
     position: absolute;
-    width: 80px;
+    width: max-content;
     top: 150%;
     left: 50%;
     margin-left: -40px;
     text-align: center;
     z-index: 1;
-    padding: 0.3em 0em;
+    padding: 0.3em 1em;
 }
 
 .bold {
@@ -72,6 +72,9 @@
     --correctInside: #D7FFB8;
     --correctBorder: #A4EE6F;
     --correctText: #57A700;
+    --wrongInside: rgb(255, 208, 208);
+    --wrongBorder: rgb(255, 96, 75);
+    --wrongText: red;
 }
 
 #question-text {
@@ -140,6 +143,7 @@
 .btn-submit, .btn-next-question {
     margin-top: 20px;
     float: right;
+    margin-right: 10vw;
     background-color: rgb(226, 226, 226);
     color: rgb(130, 130, 130);
 }
@@ -226,6 +230,28 @@
 .button.gray.outline.correct:hover::after {
     background-color: var(--correctBorder);
     border: solid 2px var(--correctBorder);
+}
+
+.button.gray.outline.wrong {
+    background-color: var(--wrongInside);
+    color: var(--wrongText);
+    border: solid 2px var(--wrongBorder);
+}
+
+.button.gray.outline.wrong::after {
+    background-color: var(--wrongBorder);
+    border: solid 2px var(--wrongBorder);
+}
+
+.button.gray.outline.wrong:hover {
+    background-color: var(--wrongInside);
+    color: var(--wrongText);
+    border: solid 2px var(--wrongorder);
+}
+
+.button.gray.outline.wrong:hover::after {
+    background-color: var(--wrongBorder);
+    border: solid 2px var(--wrongBorder);
 }
 
 /* Progress Bar */
